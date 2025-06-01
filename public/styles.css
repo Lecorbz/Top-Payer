@@ -1,0 +1,107 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2639
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 body \{\
+  margin: 0;\
+  font-family: 'Arial', sans-serif;\
+  background: linear-gradient(to bottom, #f0f0f0, #e0e0e0);\
+  color: #222;\
+  background-attachment: fixed;\
+\}\
+\
+.container \{\
+  display: flex;\
+  flex-direction: column;\
+  align-items: center;\
+  padding-top: 80px;\
+\}\
+\
+.title \{\
+  font-size: 48px;\
+  font-weight: bold;\
+  color: #00f0ff;\
+  text-shadow: 0 0 10px #00f0ff, 0 0 20px #00c4ff;\
+  margin-bottom: 40px;\
+  font-family: 'Courier New', monospace;\
+\}\
+\
+.subtitle \{\
+  font-size: 18px;\
+  color: #666;\
+  margin-bottom: 30px;\
+  text-align: center;\
+\}\
+\
+.form-container \{\
+  display: flex;\
+  flex-direction: column;\
+  gap: 15px;\
+  margin-bottom: 20px;\
+  width: 100%;\
+  max-width: 400px;\
+\}\
+\
+input[type="text"],\
+input[type="email"],\
+input[type="number"] \{\
+  padding: 12px;\
+  font-size: 16px;\
+  border: 1px solid #ccc;\
+  border-radius: 8px;\
+\}\
+\
+button \{\
+  margin-top: 10px;\
+  padding: 14px;\
+  background-color: #007bff;\
+  color: white;\
+  border: none;\
+  font-size: 18px;\
+  border-radius: 10px;\
+  cursor: pointer;\
+  width: 100%;\
+  max-width: 400px;\
+  transition: background-color 0.3s ease;\
+\}\
+\
+button:hover \{\
+  background-color: #005fd1;\
+\}\
+\
+.ranking \{\
+  margin-top: 60px;\
+  width: 90%;\
+  max-width: 600px;\
+\}\
+\
+.ranking h2 \{\
+  font-size: 28px;\
+  color: #333;\
+  text-align: center;\
+  margin-bottom: 20px;\
+\}\
+\
+.ranking-item \{\
+  display: flex;\
+  justify-content: space-between;\
+  background-color: #ffffffcc;\
+  border: 1px solid #ddd;\
+  padding: 12px 20px;\
+  margin-bottom: 10px;\
+  border-radius: 10px;\
+  font-size: 16px;\
+\}\
+\
+.ranking-item a \{\
+  color: #007bff;\
+  text-decoration: none;\
+\}\
+\
+.ranking-item a:hover \{\
+  text-decoration: underline;\
+\}\
+}
