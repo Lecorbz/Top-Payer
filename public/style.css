@@ -6,57 +6,52 @@
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
 \f0\fs24 \cf0 body \{\
+  background-color: #f0f2f5;\
   font-family: 'Arial', sans-serif;\
-  background-color: #f5f7fa;\
-  margin: 0;\
-  padding: 20px;\
   text-align: center;\
-  color: #222;\
+  margin: 0;\
+  padding: 0;\
 \}\
 \
 h1 \{\
-  font-size: 2.5em;\
-  margin-bottom: 0.2em;\
-  color: #003366;\
+  font-size: 3em;\
+  margin-top: 1.5em;\
+  color: #222;\
 \}\
 \
-.subtitle \{\
-  font-size: 1.1em;\
-  margin-bottom: 1em;\
-\}\
-\
-#min-info \{\
-  font-size: 1em;\
-  margin-bottom: 2em;\
-  color: #555;\
+p \{\
+  margin-top: 0.5em;\
+  color: #444;\
 \}\
 \
 form \{\
+  margin: 2em auto;\
   display: flex;\
-  flex-wrap: wrap;\
-  justify-content: center;\
-  gap: 10px;\
-  margin-bottom: 20px;\
+  flex-direction: column;\
+  align-items: center;\
 \}\
 \
-form input \{\
-  padding: 10px;\
+form input,\
+form select \{\
+  margin: 0.5em;\
+  padding: 0.8em;\
   font-size: 1em;\
-  width: 200px;\
+  border-radius: 6px;\
   border: 1px solid #ccc;\
-  border-radius: 5px;\
+  width: 300px;\
+  max-width: 90%;\
 \}\
 \
 form button \{\
-  width: 440px;\
-  padding: 12px;\
+  margin-top: 1em;\
+  padding: 0.9em 2em;\
   font-size: 1em;\
-  background-color: #007BFF;\
+  background-color: #007bff;\
   color: white;\
   border: none;\
   border-radius: 6px;\
   cursor: pointer;\
-  margin-top: 10px;\
+  transition: background 0.3s;\
 \}\
 \
 form button:hover \{\
@@ -64,32 +59,16 @@ form button:hover \{\
 \}\
 \
 table \{\
-  margin: 30px auto;\
+  margin: 2em auto;\
+  width: 80%;\
+  max-width: 700px;\
   border-collapse: collapse;\
-  width: 90%;\
-  max-width: 600px;\
-  background-color: #fff;\
-  border-radius: 6px;\
-  overflow: hidden;\
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);\
+  font-family: monospace;\
 \}\
 \
-table th, table td \{\
-  padding: 12px;\
+th,\
+td \{\
+  padding: 1em;\
   border-bottom: 1px solid #ddd;\
-\}\
-\
-table th \{\
-  background-color: #007BFF;\
-  color: white;\
-\}\
-\
-a \{\
-  color: #007BFF;\
-  text-decoration: none;\
-\}\
-\
-a:hover \{\
-  text-decoration: underline;\
 \}\
 }
