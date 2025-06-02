@@ -1,113 +1,112 @@
 body {
   margin: 0;
+  padding: 0;
   font-family: 'Courier New', monospace;
-  background: linear-gradient(to bottom, #a259ff, #5ee7ff); /* dégradé clair violet à bleu */
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-size: cover;
-  color: #ffffff;
+  background: linear-gradient(to bottom, #b76df1, #6dc8f1);
+  color: #fff;
   text-align: center;
   min-height: 100vh;
-  overflow-x: hidden;
-  position: relative;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
-/* Grille synthwave */
-body::after {
-  content: "";
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 200px;
-  background-image: linear-gradient(#ffffff30 1px, transparent 1px),
-                    linear-gradient(to right, #ffffff30 1px, transparent 1px);
-  background-size: 40px 40px;
-  opacity: 0.25;
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* Titre effet néon */
 h1 {
   font-size: 3rem;
-  color: #00ffff;
-  text-shadow: 0 0 5px #00ffff, 0 0 15px #00f0ff, 0 0 30px #00e0ff;
-  margin-top: 40px;
+  margin-top: 2rem;
+  color: #00f6ff;
+  text-shadow:
+    0 0 5px #00f6ff,
+    0 0 10px #00f6ff,
+    0 0 20px #0ff,
+    0 0 40px #0ff;
+  letter-spacing: 4px;
+  font-weight: bold;
 }
 
-/* Sous-titres */
-.subtitle, #min-info {
+.subtitle,
+#min-info {
   font-size: 1rem;
-  margin: 10px auto 20px;
-  color: #fff6ff;
-  font-weight: 500;
+  margin: 0.5rem 0;
+  color: #ffffff;
+  text-shadow: 0 0 4px rgba(255, 255, 255, 0.2);
 }
 
-/* Formulaire */
 form {
+  margin: 2rem auto;
   max-width: 400px;
-  margin: 0 auto 30px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  z-index: 1;
-  position: relative;
+  gap: 1rem;
+  align-items: center;
 }
 
 input {
   padding: 12px;
+  width: 100%;
   border: none;
   border-radius: 6px;
-  background: #300e4c;
-  color: white;
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
   font-size: 1rem;
-  box-shadow: inset 0 0 5px #00000055;
+  box-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+  backdrop-filter: blur(4px);
+  transition: box-shadow 0.3s ease, background 0.3s ease;
 }
 
-/* Bouton */
+input::placeholder {
+  color: #ddd;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: 0 0 10px #00ffff, 0 0 20px #00e0ff;
+  background: rgba(255, 255, 255, 0.25);
+}
+
 button {
-  padding: 12px;
-  background: linear-gradient(to right, #00bfff, #00ffff);
-  color: white;
-  font-size: 1.1rem;
-  font-weight: bold;
+  padding: 12px 24px;
   border: none;
   border-radius: 6px;
+  background: linear-gradient(90deg, #00aaff, #00f6ff);
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
   cursor: pointer;
+  box-shadow:
+    0 0 5px #00f6ff,
+    0 0 10px #00f6ff,
+    0 0 15px #00c3ff;
   transition: transform 0.2s ease;
-  box-shadow: 0 0 10px #00ffff99;
 }
 
 button:hover {
-  transform: scale(1.03);
+  transform: scale(1.05);
 }
 
-/* Tableau */
 table {
-  width: 90%;
-  max-width: 700px;
-  margin: 0 auto 60px;
+  margin: 2rem auto;
   border-collapse: collapse;
-  background: rgba(0, 0, 0, 0.4);
-  color: white;
+  width: 90%;
+  max-width: 600px;
+  background-color: rgba(0, 0, 0, 0.6);
   border-radius: 8px;
   overflow: hidden;
-  z-index: 1;
-  position: relative;
+  color: #fff;
 }
 
-th, td {
+th,
+td {
   padding: 12px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: center;
 }
 
 th {
-  background: rgba(0, 0, 0, 0.3);
+  background-color: #222;
+  color: #00ffff;
   font-weight: bold;
+  font-family: 'Courier New', monospace;
 }
 
-a {
-  color: #00ffff;
-  text-decoration: none;
+td {
+  border-top: 1px solid #333;
 }
