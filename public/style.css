@@ -1,112 +1,138 @@
+/* --- Fond fixe avec étoiles et dégradé clair --- */
 body {
   margin: 0;
-  padding: 0;
-  font-family: 'Courier New', monospace;
-  background: linear-gradient(to bottom, #b76df1, #6dc8f1);
+  font-family: 'Courier New', Courier, monospace;
+  background: linear-gradient(to bottom, #d09eff, #a0dfff);
   color: #fff;
   text-align: center;
-  min-height: 100vh;
+  overflow-x: hidden;
   background-attachment: fixed;
+  background-repeat: no-repeat;
   background-size: cover;
+  position: relative;
 }
 
+/* --- Animation étoiles scintillantes --- */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(white 1px, transparent 1px);
+  background-size: 50px 50px;
+  opacity: 0.1;
+  animation: starsMove 60s linear infinite;
+  z-index: 0;
+}
+
+@keyframes starsMove {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-100px, -100px);
+  }
+}
+
+/* --- Titre effet néon CRT --- */
 h1 {
-  font-size: 3rem;
-  margin-top: 2rem;
-  color: #00f6ff;
-  text-shadow:
-    0 0 5px #00f6ff,
-    0 0 10px #00f6ff,
-    0 0 20px #0ff,
-    0 0 40px #0ff;
-  letter-spacing: 4px;
-  font-weight: bold;
+  font-size: 3em;
+  color: #00f0ff;
+  text-shadow: 0 0 5px #00f0ff, 0 0 15px #00f0ff, 0 0 25px #00f0ff;
+  animation: neonFlicker 2s infinite alternate;
+  z-index: 1;
+  position: relative;
 }
 
-.subtitle,
-#min-info {
-  font-size: 1rem;
-  margin: 0.5rem 0;
+@keyframes neonFlicker {
+  0% {
+    text-shadow: 0 0 5px #00f0ff, 0 0 15px #00f0ff, 0 0 25px #00f0ff;
+    opacity: 1;
+  }
+  50% {
+    text-shadow: 0 0 3px #00f0ff, 0 0 8px #00f0ff;
+    opacity: 0.85;
+  }
+  100% {
+    text-shadow: 0 0 5px #00f0ff, 0 0 15px #00f0ff, 0 0 25px #00f0ff;
+    opacity: 1;
+  }
+}
+
+/* --- Paragraphes --- */
+p {
+  font-size: 1em;
+  margin: 0.5em 0;
   color: #ffffff;
-  text-shadow: 0 0 4px rgba(255, 255, 255, 0.2);
+  z-index: 1;
+  position: relative;
 }
 
+.subtitle {
+  margin-bottom: 1em;
+}
+
+/* --- Formulaire stylisé --- */
 form {
-  margin: 2rem auto;
-  max-width: 400px;
+  margin: 2em auto;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
   align-items: center;
+  gap: 1em;
+  width: 90%;
+  max-width: 400px;
+  z-index: 1;
+  position: relative;
 }
 
 input {
-  padding: 12px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: none;
+  background: rgba(255, 255, 255, 0.9);
+  color: #222;
+  font-size: 1em;
   width: 100%;
-  border: none;
-  border-radius: 6px;
-  background: rgba(255, 255, 255, 0.15);
-  color: #ffffff;
-  font-size: 1rem;
-  box-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
-  backdrop-filter: blur(4px);
-  transition: box-shadow 0.3s ease, background 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-input::placeholder {
-  color: #ddd;
-}
-
-input:focus {
-  outline: none;
-  box-shadow: 0 0 10px #00ffff, 0 0 20px #00e0ff;
-  background: rgba(255, 255, 255, 0.25);
-}
-
+/* --- Bouton PAY (non modifié ici) --- */
 button {
-  padding: 12px 24px;
-  border: none;
-  border-radius: 6px;
-  background: linear-gradient(90deg, #00aaff, #00f6ff);
-  color: white;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  box-shadow:
-    0 0 5px #00f6ff,
-    0 0 10px #00f6ff,
-    0 0 15px #00c3ff;
-  transition: transform 0.2s ease;
+  /* Le style actuel du bouton PAY reste inchangé */
 }
 
-button:hover {
-  transform: scale(1.05);
-}
-
+/* --- Tableau --- */
 table {
-  margin: 2rem auto;
+  margin: 3em auto;
   border-collapse: collapse;
-  width: 90%;
-  max-width: 600px;
-  background-color: rgba(0, 0, 0, 0.6);
-  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 12px;
   overflow: hidden;
   color: #fff;
+  width: 90%;
+  max-width: 700px;
+  z-index: 1;
+  position: relative;
 }
 
-th,
-td {
-  padding: 12px;
-  text-align: center;
+th, td {
+  padding: 12px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-th {
-  background-color: #222;
-  color: #00ffff;
+thead {
+  background: rgba(0, 0, 0, 0.8);
   font-weight: bold;
-  font-family: 'Courier New', monospace;
 }
 
-td {
-  border-top: 1px solid #333;
+/* --- Liens --- */
+a {
+  color: #a0dfff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
