@@ -1,127 +1,102 @@
-
-/* Reset de base */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
+  margin: 0;
   font-family: 'Courier New', monospace;
-  color: #fff;
-  background: linear-gradient(to top, #000010, #0d0024);
-  height: 100vh;
+  background: linear-gradient(to bottom, #2c003e, #00172d);
+  color: #ffffff;
+  text-align: center;
+  min-height: 100vh;
   overflow-x: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 40px;
   position: relative;
 }
 
-/* Fond étoilé animé */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background: radial-gradient(circle at 30% 30%, rgba(255,0,255,0.1), transparent 70%),
-              radial-gradient(circle at 70% 70%, rgba(0,255,255,0.1), transparent 70%),
-              repeating-linear-gradient(45deg, rgba(255, 0, 255, 0.05) 0, rgba(255, 0, 255, 0.05) 2px, transparent 2px, transparent 4px);
-  animation: stars 30s linear infinite;
-  z-index: 0;
-}
-
-/* Sol quadrillé rétro */
+/* Sol rétro - grille */
 body::after {
   content: "";
-  position: fixed;
-  bottom: 0; left: 0; width: 100%; height: 200px;
-  background-image:
-    linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px),
-    linear-gradient(to top, rgba(255,255,255,0.1) 1px, transparent 1px);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  background-image: linear-gradient(#6d28d9 1px, transparent 1px),
+                    linear-gradient(to right, #6d28d9 1px, transparent 1px);
   background-size: 40px 40px;
-  z-index: 0;
-  transform: perspective(200px) rotateX(75deg);
-  transform-origin: bottom;
+  opacity: 0.2;
+  pointer-events: none;
 }
 
-/* Animation des étoiles */
-@keyframes stars {
-  from { background-position: 0 0, 0 0, 0 0; }
-  to { background-position: 1000px 1000px, -1000px -1000px, 500px 500px; }
-}
-
-/* Titre néon effet CRT */
+/* Titre néon */
 h1 {
   font-size: 3rem;
-  color: #00f0ff;
-  text-shadow: 0 0 5px #00f0ff, 0 0 10px #00f0ff, 0 0 20px #00f0ff,
-               0 0 40px #0ff, 0 0 80px #0ff;
-  animation: flicker 2s infinite;
-  z-index: 1;
-  position: relative;
+  color: #00ffff;
+  text-shadow: 0 0 10px #00ffff, 0 0 20px #00f0ff, 0 0 40px #00e0ff;
+  margin-top: 40px;
 }
 
-@keyframes flicker {
-  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
-  20%, 22%, 24%, 55% { opacity: 0.8; }
-}
-
+/* Sous-titres */
 .subtitle, #min-info {
-  margin-top: 10px;
-  margin-bottom: 20px;
-  text-align: center;
-  color: #ccc;
+  font-size: 1rem;
+  margin: 10px auto 20px;
+  color: #e0e0ff;
+  font-weight: 500;
 }
 
+/* Formulaire */
 form {
+  max-width: 400px;
+  margin: 0 auto 30px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  max-width: 400px;
-  width: 100%;
-  position: relative;
-  z-index: 1;
+  gap: 12px;
 }
 
 input {
   padding: 12px;
   border: none;
-  border-radius: 5px;
-  background-color: rgba(0, 0, 0, 0.6);
-  color: #fff;
+  border-radius: 6px;
+  background: #240c37;
+  color: white;
   font-size: 1rem;
 }
 
 button {
-  background: linear-gradient(90deg, #00c3ff, #00f0ff);
-  color: white;
   padding: 12px;
+  background: linear-gradient(to right, #00bfff, #00ffff);
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
   border: none;
   border-radius: 6px;
-  font-weight: bold;
-  font-size: 1rem;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: transform 0.2s ease;
 }
 
 button:hover {
-  background: linear-gradient(90deg, #00f0ff, #00c3ff);
+  transform: scale(1.03);
 }
 
+/* Tableau */
 table {
-  margin-top: 30px;
   width: 90%;
-  max-width: 600px;
+  max-width: 700px;
+  margin: 0 auto 50px;
   border-collapse: collapse;
-  background-color: rgba(0,0,0,0.6);
-  z-index: 1;
-  position: relative;
+  background: rgba(0, 0, 0, 0.4);
+  color: white;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 th, td {
   padding: 12px;
-  border: 1px solid rgba(255,255,255,0.1);
-  text-align: center;
-  color: #fff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+th {
+  background: rgba(255, 255, 255, 0.1);
+  font-weight: bold;
+}
+
+a {
+  color: #00ffff;
+  text-decoration: none;
 }
