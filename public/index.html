@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>TOP PAYER</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link href="style.css" rel="stylesheet" />
 </head>
 <body>
@@ -13,7 +13,7 @@
   <form id="payment-form">
     <input type="text" id="name" placeholder="Your name" required />
     <input type="email" id="email" placeholder="Your email" required />
-    <input type="number" id="amount" placeholder="Amount in €" min="1" step="1" required />
+    <input type="number" id="amount" placeholder="Amount in €" required min="1" step="1" />
     <input type="url" id="link" placeholder="Website or social link (optional)" />
     <button type="submit">PAY</button>
   </form>
@@ -23,55 +23,72 @@
     </thead>
     <tbody id="ranking-body"></tbody>
   </table>
-
   <script>
     const BACKEND_URL = "https://top-payer.onrender.com";
+    let minAmount = 1;
 
     async function getMinAmount() {
-      const res = await fetch(`${BACKEND_URL}/api/min`);
-      const data = await res.json();
-      document.getElementById("min-info").innerText = "Minimum payment required: " + data.min + "€";
-      document.getElementById("amount").setAttribute("min", data.min);
+      try {
+        const res = await fetch(`${BACKEND_URL}/api/min`);
+        const data = await res.json();
+        minAmount = Math.max(1, data.min || 1);
+        document.getElementById("min-info").innerText = "Minimum payment required: " + minAmount + "€";
+        document.getElementById("amount").min = minAmount;
+      } catch (err) {
+        console.error("Error fetching min amount:", err);
+        document.getElementById("min-info").innerText = "Minimum payment required: 1€";
+        minAmount = 1;
+      }
     }
 
     async function getRanking() {
-      const res = await fetch(`${BACKEND_URL}/api/ranking`);
-      const list = await res.json();
-      const body = document.getElementById("ranking-body");
-      body.innerHTML = "";
-      list.forEach((entry, i) => {
-        const medalClass = i === 0 ? 'gold' : i === 1 ? 'silver' : i === 2 ? 'bronze' : '';
-        body.innerHTML += `<tr class="${medalClass}">
-          <td>${i + 1}</td>
-          <td>${entry.link ? `<a href="${entry.link}" target="_blank">${entry.name}</a>` : entry.name}</td>
-          <td>${entry.amount}</td>
-        </tr>`;
-      });
+      try {
+        const res = await fetch(`${BACKEND_URL}/api/ranking`);
+        const list = await res.json();
+        const body = document.getElementById("ranking-body");
+        body.innerHTML = "";
+        list.forEach((entry, i) => {
+          const medalClass = i === 0 ? "gold" : i === 1 ? "silver" : i === 2 ? "bronze" : "";
+          body.innerHTML += `<tr class="${medalClass}">
+            <td>${i + 1}</td>
+            <td>${entry.link ? `<a href="${entry.link}" target="_blank">${entry.name}</a>` : entry.name}</td>
+            <td>${entry.amount}</td>
+          </tr>`;
+        });
+      } catch (err) {
+        console.error("Error loading ranking:", err);
+      }
     }
 
     document.getElementById("payment-form").addEventListener("submit", async (e) => {
       e.preventDefault();
+
       const name = document.getElementById("name").value.trim();
       const email = document.getElementById("email").value.trim();
-      const amount = parseInt(document.getElementById("amount").value);
+      const amount = parseFloat(document.getElementById("amount").value);
       const link = document.getElementById("link").value.trim();
 
-      if (isNaN(amount) || amount < parseInt(document.getElementById("amount").min)) {
-        alert("Amount must be at least " + document.getElementById("amount").min + "€");
+      if (isNaN(amount) || amount < minAmount || amount % 1 !== 0) {
+        alert(`Minimum payment required: ${minAmount}€ (whole euros only)`);
         return;
       }
 
-      const res = await fetch(`${BACKEND_URL}/api/checkout`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, amount, link })
-      });
+      try {
+        const res = await fetch(`${BACKEND_URL}/api/checkout`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, email, amount, link })
+        });
 
-      const data = await res.json();
-      if (data.url) {
-        window.location.href = data.url;
-      } else {
-        alert(data.error || "Something went wrong.");
+        const data = await res.json();
+        if (data.url) {
+          window.location.href = data.url;
+        } else {
+          alert(data.error || "Something went wrong.");
+        }
+      } catch (err) {
+        console.error("Checkout error:", err);
+        alert("An error occurred while processing the payment.");
       }
     });
 
