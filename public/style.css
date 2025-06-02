@@ -1,14 +1,17 @@
+/* Fond dégradé rétro */
 body {
   margin: 0;
   padding: 0;
   font-family: 'Courier New', monospace;
-  background: linear-gradient(to bottom, #b26fcf, #80bfe5);
+  background: linear-gradient(to bottom, #a06bdf, #97c6f3);
   color: white;
+  text-align: center;
+  min-height: 100vh;
   overflow-x: hidden;
-  background-attachment: fixed;
+  position: relative;
 }
 
-/* Étoiles random et scintillantes */
+/* Étoiles random et scintillantes (grandes et visibles) */
 body::before {
   content: "";
   position: fixed;
@@ -17,10 +20,10 @@ body::before {
   width: 100%;
   height: 100%;
   background-image:
-    radial-gradient(yellow 0.5px, transparent 0.5px),
-    radial-gradient(yellow 0.5px, transparent 0.5px),
-    radial-gradient(yellow 0.5px, transparent 0.5px),
-    radial-gradient(yellow 0.5px, transparent 0.5px);
+    radial-gradient(yellow 8px, transparent 8px),
+    radial-gradient(yellow 8px, transparent 8px),
+    radial-gradient(yellow 8px, transparent 8px),
+    radial-gradient(yellow 8px, transparent 8px);
   background-size: 100px 100px, 120px 120px, 140px 140px, 160px 160px;
   background-position:
     10px 20px,
@@ -38,110 +41,90 @@ body::before {
   50% { opacity: 0.8; }
 }
 
-/* Titre glow moins glossy */
+/* Titre avec effet néon léger */
 h1 {
-  font-family: 'Courier New', monospace;
-  font-size: 3.5rem;
-  color: #00f0ff;
-  text-align: center;
-  margin-top: 40px;
-  text-shadow: 0 0 4px #00f0ff, 0 0 8px #00c0ff;
-  animation: glow 2s ease-in-out infinite alternate;
+  font-size: 3em;
+  color: #00f2ff;
+  text-shadow: 0 0 5px #00f2ff, 0 0 15px #00f2ff, 0 0 30px #00f2ff;
+  animation: flicker 2s infinite alternate;
+  position: relative;
+  z-index: 1;
   opacity: 0.85;
 }
 
-@keyframes glow {
-  from {
-    text-shadow: 0 0 6px #00f0ff, 0 0 10px #00c0ff;
-  }
-  to {
-    text-shadow: 0 0 12px #00f0ff, 0 0 18px #00c0ff;
-  }
+@keyframes flicker {
+  0% { text-shadow: 0 0 2px #00f2ff; }
+  100% { text-shadow: 0 0 10px #00f2ff, 0 0 20px #00f2ff; }
 }
 
+/* Texte informatif */
 .subtitle,
 #min-info {
-  text-align: center;
-  margin: 10px auto;
-  font-size: 1.1rem;
-  max-width: 90%;
-  color: #f3f3f3;
+  font-size: 1em;
+  margin-top: 10px;
+  color: #f5dfff;
+  position: relative;
+  z-index: 1;
 }
 
 /* Formulaire */
 form {
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
-  margin-top: 20px;
+  gap: 10px;
   position: relative;
   z-index: 1;
 }
 
 input {
-  padding: 12px 18px;
-  width: 300px;
-  border-radius: 10px;
+  padding: 10px;
   border: none;
-  font-size: 1rem;
-  box-shadow: 0 0 5px rgba(0,0,0,0.1);
-  background-color: #ffffffee;
+  border-radius: 10px;
+  width: 300px;
+  font-size: 1em;
+  background: white;
   color: #333;
 }
 
-/* Bouton PAY inchangé */
 button {
-  padding: 12px 22px;
-  font-size: 1.1rem;
-  background: linear-gradient(to right, #00c6ff, #00f2fe);
-  color: white;
+  padding: 12px 20px;
   border: none;
   border-radius: 10px;
+  background: linear-gradient(to right, #00f2ff, #00d0ff);
+  color: white;
+  font-weight: bold;
+  font-size: 1em;
   cursor: pointer;
   transition: transform 0.2s ease;
-  font-weight: bold;
-  width: 300px;
-  margin-top: 10px;
 }
 
 button:hover {
   transform: scale(1.05);
 }
 
-/* Classement */
+/* Tableau */
 table {
   margin: 40px auto;
   border-collapse: collapse;
-  width: 90%;
-  max-width: 600px;
-  background-color: rgba(255, 255, 255, 0.1);
+  width: 80%;
   position: relative;
   z-index: 1;
-  border-radius: 10px;
-  overflow: hidden;
 }
 
-thead th {
-  background-color: rgba(200, 200, 200, 0.3);
+thead {
+  background: rgba(200, 200, 200, 0.2);
   color: red;
-  font-size: 1.2rem;
-  padding: 12px;
-  border-right: 1px solid rgba(255, 255, 255, 0.3);
+  font-size: 1.2em;
 }
 
-thead th:last-child {
-  border-right: none;
+th, td {
+  padding: 12px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-tbody td {
-  padding: 10px;
-  text-align: center;
-  font-size: 1rem;
-  color: white;
-}
-
-/* Podium */
+/* Médailles pour le top 3 */
 tbody tr:nth-child(1) td {
   color: gold;
   font-weight: bold;
@@ -151,12 +134,6 @@ tbody tr:nth-child(2) td {
   font-weight: bold;
 }
 tbody tr:nth-child(3) td {
-  color: #cd7f32;
+  color: #cd7f32; /* Bronze */
   font-weight: bold;
-}
-
-/* Liens */
-a {
-  color: white;
-  text-decoration: underline;
 }
