@@ -1,8 +1,7 @@
-/* --- Fond fixe avec étoiles et dégradé clair --- */
 body {
   margin: 0;
   font-family: 'Courier New', Courier, monospace;
-  background: linear-gradient(to bottom, #d09eff, #a0dfff);
+  background: linear-gradient(to bottom, #dab7ff, #bde5ff);
   color: #fff;
   text-align: center;
   overflow-x: hidden;
@@ -12,7 +11,7 @@ body {
   position: relative;
 }
 
-/* --- Animation étoiles scintillantes --- */
+/* --- Étoiles visibles et scintillantes --- */
 body::before {
   content: "";
   position: fixed;
@@ -20,48 +19,39 @@ body::before {
   left: 0;
   width: 200%;
   height: 200%;
-  background: radial-gradient(white 1px, transparent 1px);
-  background-size: 50px 50px;
-  opacity: 0.1;
-  animation: starsMove 60s linear infinite;
+  background: radial-gradient(#ffffff 2px, transparent 2px);
+  background-size: 60px 60px;
+  opacity: 0.25;
+  animation: starsMove 60s linear infinite, twinkle 3s ease-in-out infinite;
   z-index: 0;
 }
 
 @keyframes starsMove {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(-100px, -100px);
-  }
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-100px, -100px); }
 }
 
-/* --- Titre effet néon CRT --- */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 0.5; }
+}
+
+/* --- Titre néon plus lisible --- */
 h1 {
   font-size: 3em;
-  color: #00f0ff;
-  text-shadow: 0 0 5px #00f0ff, 0 0 15px #00f0ff, 0 0 25px #00f0ff;
+  color: #c44aff;
+  text-shadow: 0 0 5px #c44aff, 0 0 15px #c44aff, 0 0 25px #ff00e0;
   animation: neonFlicker 2s infinite alternate;
   z-index: 1;
   position: relative;
 }
 
 @keyframes neonFlicker {
-  0% {
-    text-shadow: 0 0 5px #00f0ff, 0 0 15px #00f0ff, 0 0 25px #00f0ff;
-    opacity: 1;
-  }
-  50% {
-    text-shadow: 0 0 3px #00f0ff, 0 0 8px #00f0ff;
-    opacity: 0.85;
-  }
-  100% {
-    text-shadow: 0 0 5px #00f0ff, 0 0 15px #00f0ff, 0 0 25px #00f0ff;
-    opacity: 1;
-  }
+  0% { text-shadow: 0 0 5px #c44aff, 0 0 15px #c44aff, 0 0 25px #ff00e0; opacity: 1; }
+  50% { text-shadow: 0 0 3px #a800ff, 0 0 8px #ff55ff; opacity: 0.85; }
+  100% { text-shadow: 0 0 5px #c44aff, 0 0 15px #c44aff, 0 0 25px #ff00e0; opacity: 1; }
 }
 
-/* --- Paragraphes --- */
 p {
   font-size: 1em;
   margin: 0.5em 0;
@@ -74,7 +64,6 @@ p {
   margin-bottom: 1em;
 }
 
-/* --- Formulaire stylisé --- */
 form {
   margin: 2em auto;
   display: flex;
@@ -91,19 +80,33 @@ input {
   padding: 12px 16px;
   border-radius: 12px;
   border: none;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.95);
   color: #222;
   font-size: 1em;
   width: 100%;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-/* --- Bouton PAY (non modifié ici) --- */
+/* --- Bouton PAY restauré --- */
 button {
-  /* Le style actuel du bouton PAY reste inchangé */
+  padding: 14px 24px;
+  background: linear-gradient(to right, #007BFF, #00F0FF);
+  border: none;
+  color: white;
+  font-size: 1em;
+  border-radius: 12px;
+  cursor: pointer;
+  width: 100%;
+  max-width: 400px;
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba(0,123,255,0.5);
+  transition: background 0.3s ease;
 }
 
-/* --- Tableau --- */
+button:hover {
+  background: linear-gradient(to right, #005ce6, #00d4ff);
+}
+
 table {
   margin: 3em auto;
   border-collapse: collapse;
@@ -127,7 +130,6 @@ thead {
   font-weight: bold;
 }
 
-/* --- Liens --- */
 a {
   color: #a0dfff;
   text-decoration: none;
