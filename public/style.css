@@ -1,120 +1,163 @@
-
+/* Fond dégradé plus sombre */
 body {
   margin: 0;
+  padding: 0;
   font-family: 'Courier New', monospace;
-  color: #fff;
-  background: linear-gradient(to bottom, #e7b7f8 0%, #d0c0f5 40%, #ade5f8 100%);
-  background-attachment: fixed;
+  background: linear-gradient(to bottom, #b070d0, #7dbce8);
+  color: white;
   overflow-x: hidden;
 }
 
-.stars {
+/* Étoiles scintillantes */
+body::before {
+  content: "";
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none;
+  background-image: radial-gradient(yellow 1px, transparent 1px),
+                    radial-gradient(yellow 1px, transparent 1px);
+  background-size: 50px 50px;
+  background-position: 0 0, 25px 25px;
+  animation: twinkle 3s infinite;
   z-index: 0;
-  background: transparent;
+  opacity: 0.5;
+  pointer-events: none;
 }
 
-.star {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: yellow;
-  border-radius: 50%;
-  animation: twinkle 2s infinite ease-in-out;
-  opacity: 0.8;
-}
-
+/* Animation scintillement étoiles */
 @keyframes twinkle {
-  0%, 100% { opacity: 0.5; }
-  50% { opacity: 1; }
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.8;
+  }
 }
 
+/* Titre avec effet CRT glow */
 h1 {
-  font-size: 3rem;
+  font-family: 'Courier New', monospace;
+  font-size: 3.5rem;
+  color: #00f0ff;
   text-align: center;
   margin-top: 40px;
-  color: #00f6ff;
-  text-shadow: 0 0 8px #00f6ff, 0 0 20px #00f6ff;
-  animation: neon-flicker 2s infinite alternate;
+  text-shadow: 0 0 4px #00f0ff, 0 0 10px #00c0ff;
+  animation: glow 2s ease-in-out infinite alternate;
+  opacity: 0.9;
 }
 
-@keyframes neon-flicker {
-  0% { opacity: 1; text-shadow: 0 0 10px #00f6ff, 0 0 20px #00f6ff; }
-  100% { opacity: 0.8; text-shadow: 0 0 20px #00f6ff, 0 0 30px #00f6ff; }
+@keyframes glow {
+  from {
+    text-shadow: 0 0 5px #00f0ff, 0 0 10px #00c0ff;
+  }
+  to {
+    text-shadow: 0 0 15px #00f0ff, 0 0 30px #00c0ff;
+  }
 }
 
-.subtitle, #min-info {
+.subtitle,
+#min-info {
   text-align: center;
-  margin: 10px 0;
+  margin: 10px auto;
   font-size: 1.1rem;
-  color: #fff;
-  text-shadow: 0 0 3px #555;
+  max-width: 90%;
+  color: #f3f3f3;
 }
 
+/* Formulaire centré */
 form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 12px;
   margin-top: 20px;
-  gap: 10px;
-  z-index: 1;
   position: relative;
+  z-index: 1;
 }
 
+/* Champs de formulaire */
 input {
-  padding: 12px 15px;
+  padding: 12px 18px;
   width: 300px;
   border-radius: 10px;
   border: none;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   font-size: 1rem;
-  background-color: #fff;
-  color: #000;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  background-color: #ffffffee;
+  color: #333;
 }
 
+/* Bouton Pay */
 button {
-  padding: 12px 40px;
-  border-radius: 8px;
-  border: none;
-  font-size: 1rem;
-  font-weight: bold;
+  padding: 12px 22px;
+  font-size: 1.1rem;
   background: linear-gradient(to right, #00c6ff, #00f2fe);
   color: white;
+  border: none;
+  border-radius: 10px;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(0, 198, 255, 0.4);
+  transition: transform 0.2s ease;
+  font-weight: bold;
+  width: 300px;
+  margin-top: 10px;
 }
 
+button:hover {
+  transform: scale(1.05);
+}
+
+/* Table de classement */
 table {
-  margin: 30px auto;
+  margin: 40px auto;
   border-collapse: collapse;
   width: 90%;
-  max-width: 800px;
-  z-index: 1;
-  position: relative;
-}
-
-thead th {
-  background-color: rgba(255, 255, 255, 0.3);
-  color: red;
-  font-size: 1.2rem;
-  padding: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-tbody td {
+  max-width: 600px;
   background-color: rgba(255, 255, 255, 0.1);
+  position: relative;
+  z-index: 1;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* En-tête du classement */
+thead th {
+  background-color: rgba(200, 200, 200, 0.3);
+  color: red;
+  font-size: 1.1rem;
+  padding: 12px;
+  border-right: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+thead th:last-child {
+  border-right: none;
+}
+
+/* Lignes du classement */
+tbody td {
   padding: 10px;
   text-align: center;
   font-size: 1rem;
   color: white;
-  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-tbody tr:nth-child(1) td { color: gold; font-weight: bold; }
-tbody tr:nth-child(2) td { color: silver; font-weight: bold; }
-tbody tr:nth-child(3) td { color: #cd7f32; font-weight: bold; }
+/* Styles pour les 3 premiers */
+tbody tr:nth-child(1) td {
+  color: gold;
+  font-weight: bold;
+}
+tbody tr:nth-child(2) td {
+  color: silver;
+  font-weight: bold;
+}
+tbody tr:nth-child(3) td {
+  color: #cd7f32; /* bronze */
+  font-weight: bold;
+}
+
+/* Liens dans le classement */
+a {
+  color: white;
+  text-decoration: underline;
+}
