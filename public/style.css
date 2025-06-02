@@ -1,8 +1,9 @@
+
 body {
   margin: 0;
   padding: 0;
   font-family: 'Courier New', monospace;
-  background: linear-gradient(to bottom, #b383d1, #e6c0f0, #c0eaff);
+  background: linear-gradient(to bottom, #d69de8, #f8e1f4, #c0eaff);
   background-attachment: fixed;
   color: #fff;
   text-align: center;
@@ -10,57 +11,51 @@ body {
   overflow-x: hidden;
 }
 
-/* Étoiles visibles et scintillantes */
+/* Stars (yellow, visible, animated) */
 body::before {
   content: "";
   position: fixed;
   top: 0; left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: transparent;
+  width: 100%;
+  height: 100%;
   z-index: 0;
+  background: transparent;
   pointer-events: none;
   box-shadow:
-    5vw 10vh #ffeb3b,
-    20vw 25vh #ffff8d,
-    35vw 15vh #fff59d,
-    60vw 35vh #fff176,
-    75vw 20vh #fdd835,
-    90vw 50vh #ffe082;
-  animation: twinkle 4s ease-in-out infinite alternate;
-  opacity: 0.8;
+    5vw 15vh #ffeb3b,
+    15vw 25vh #fff176,
+    30vw 10vh #ffee58,
+    45vw 35vh #ffeb3b,
+    60vw 20vh #fff59d,
+    75vw 40vh #fff176,
+    85vw 18vh #ffff8d;
+  animation: twinkle 4s infinite alternate;
+  opacity: 0.9;
 }
 
 @keyframes twinkle {
-  0%   { opacity: 0.4; transform: scale(1); }
-  100% { opacity: 1; transform: scale(1.05); }
+  from { opacity: 0.6; transform: scale(1); }
+  to { opacity: 1; transform: scale(1.05); }
 }
 
 h1 {
-  font-size: 2.8em;
+  font-size: 3em;
   color: #00f0ff;
-  text-shadow:
-    0 0 5px #00e0ff,
-    0 0 10px #00e0ff,
-    0 0 20px #00f0ff;
-  margin-top: 1em;
-  z-index: 1;
-  position: relative;
+  text-shadow: 0 0 10px #00e0ff, 0 0 20px #00ffff;
   animation: flicker 1.5s infinite alternate;
 }
 
 @keyframes flicker {
-  from { opacity: 0.9; text-shadow: 0 0 5px #00e0ff; }
-  to   { opacity: 1; text-shadow: 0 0 20px #00ffff, 0 0 40px #00ccff; }
+  from { opacity: 0.9; }
+  to { opacity: 1; text-shadow: 0 0 20px #00ffff, 0 0 40px #00ccff; }
 }
 
 .subtitle,
 #min-info {
-  font-size: 1.2em;
+  font-size: 1.3em;
   color: #ffffff;
-  text-shadow: 0 0 5px rgba(255,255,255,0.5);
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
+  text-shadow: 0 0 4px rgba(255,255,255,0.8);
+  margin: 0.5em;
   z-index: 1;
   position: relative;
 }
@@ -104,37 +99,49 @@ button:hover {
   box-shadow: 0 0 10px #00ffff;
 }
 
-/* Tableau mis à jour */
 table {
   width: 90%;
   max-width: 700px;
   margin: 2em auto;
   border-collapse: collapse;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 
 thead {
-  background-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
-th, td {
+th {
+  font-size: 1.1em;
+  color: red;
   padding: 1em;
   text-align: center;
   font-family: monospace;
-  border-right: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-th:last-child,
-td:last-child {
-  border-right: none;
 }
 
 td {
+  padding: 1em;
+  text-align: center;
+  font-family: monospace;
   background-color: rgba(255, 255, 255, 0.07);
   color: #fff;
+}
+
+/* Highlight top 3 players */
+tbody tr:nth-child(1) td {
+  color: gold;
+  font-weight: bold;
+}
+tbody tr:nth-child(2) td {
+  color: silver;
+  font-weight: bold;
+}
+tbody tr:nth-child(3) td {
+  color: #cd7f32; /* bronze */
+  font-weight: bold;
 }
 
 tbody tr:nth-child(even) td {
@@ -145,7 +152,6 @@ td a {
   color: #00eaff;
   text-decoration: none;
 }
-
 td a:hover {
   text-decoration: underline;
 }
