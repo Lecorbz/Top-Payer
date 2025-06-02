@@ -1,58 +1,104 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto+Mono&display=swap');
+
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f7f7f7;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto Mono', monospace;
+  background: linear-gradient(to bottom, #1e1f26, #0f0f1b);
+  color: white;
   text-align: center;
-  padding: 20px;
+  min-height: 100vh;
+  background-attachment: fixed;
 }
 
 h1 {
+  font-family: 'Orbitron', sans-serif;
   font-size: 3em;
-  color: #222;
+  margin-top: 30px;
+  color: #00f0ff;
+  text-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff;
 }
 
 .subtitle {
-  margin-bottom: 20px;
-  color: #444;
+  font-size: 1.1em;
+  margin-bottom: 10px;
+  color: #cccccc;
+}
+
+#min-info {
+  margin-bottom: 30px;
+  font-weight: bold;
 }
 
 form {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-bottom: 20px;
+  gap: 15px;
+  max-width: 400px;
+  margin: 0 auto 40px auto;
 }
 
-form input {
-  padding: 10px;
-  margin: 5px;
-  width: 250px;
+input {
+  padding: 12px;
   font-size: 1em;
-}
-
-form button {
-  margin-top: 10px;
-  padding: 10px 30px;
-  font-size: 1em;
-  background-color: #007BFF;
+  border: 1px solid #444;
+  border-radius: 6px;
+  background-color: #1c1c2e;
   color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  outline: none;
+  transition: 0.3s;
 }
 
-form button:hover {
-  background-color: #0056b3;
+input:focus {
+  border-color: #00c3ff;
+  box-shadow: 0 0 10px #00c3ff;
+}
+
+button {
+  background: linear-gradient(to right, #2196f3, #00e5ff);
+  border: none;
+  padding: 15px;
+  font-size: 1.1em;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 0 10px #00e5ff;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  width: 100%;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #00e5ff, 0 0 40px #00e5ff;
 }
 
 table {
-  margin: 0 auto;
-  width: 80%;
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto 50px auto;
   border-collapse: collapse;
-  background-color: white;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  overflow: hidden;
 }
 
-table th, table td {
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
+th, td {
+  padding: 15px;
+  border-bottom: 1px solid #333;
+  color: white;
+}
+
+th {
+  background-color: #222;
+}
+
+a {
+  color: #00e5ff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
