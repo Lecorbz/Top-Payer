@@ -1,157 +1,120 @@
 
 body {
   margin: 0;
-  padding: 0;
   font-family: 'Courier New', monospace;
-  background: linear-gradient(to bottom, #d69de8, #f8e1f4, #c0eaff);
-  background-attachment: fixed;
   color: #fff;
-  text-align: center;
-  min-height: 100vh;
+  background: linear-gradient(to bottom, #e7b7f8 0%, #d0c0f5 40%, #ade5f8 100%);
+  background-attachment: fixed;
   overflow-x: hidden;
 }
 
-/* Stars (yellow, visible, animated) */
-body::before {
-  content: "";
+.stars {
   position: fixed;
-  top: 0; left: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
+  pointer-events: none;
   z-index: 0;
   background: transparent;
-  pointer-events: none;
-  box-shadow:
-    5vw 15vh #ffeb3b,
-    15vw 25vh #fff176,
-    30vw 10vh #ffee58,
-    45vw 35vh #ffeb3b,
-    60vw 20vh #fff59d,
-    75vw 40vh #fff176,
-    85vw 18vh #ffff8d;
-  animation: twinkle 4s infinite alternate;
-  opacity: 0.9;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: yellow;
+  border-radius: 50%;
+  animation: twinkle 2s infinite ease-in-out;
+  opacity: 0.8;
 }
 
 @keyframes twinkle {
-  from { opacity: 0.6; transform: scale(1); }
-  to { opacity: 1; transform: scale(1.05); }
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
 }
 
 h1 {
-  font-size: 3em;
-  color: #00f0ff;
-  text-shadow: 0 0 10px #00e0ff, 0 0 20px #00ffff;
-  animation: flicker 1.5s infinite alternate;
+  font-size: 3rem;
+  text-align: center;
+  margin-top: 40px;
+  color: #00f6ff;
+  text-shadow: 0 0 8px #00f6ff, 0 0 20px #00f6ff;
+  animation: neon-flicker 2s infinite alternate;
 }
 
-@keyframes flicker {
-  from { opacity: 0.9; }
-  to { opacity: 1; text-shadow: 0 0 20px #00ffff, 0 0 40px #00ccff; }
+@keyframes neon-flicker {
+  0% { opacity: 1; text-shadow: 0 0 10px #00f6ff, 0 0 20px #00f6ff; }
+  100% { opacity: 0.8; text-shadow: 0 0 20px #00f6ff, 0 0 30px #00f6ff; }
 }
 
-.subtitle,
-#min-info {
-  font-size: 1.3em;
-  color: #ffffff;
-  text-shadow: 0 0 4px rgba(255,255,255,0.8);
-  margin: 0.5em;
-  z-index: 1;
-  position: relative;
+.subtitle, #min-info {
+  text-align: center;
+  margin: 10px 0;
+  font-size: 1.1rem;
+  color: #fff;
+  text-shadow: 0 0 3px #555;
 }
 
 form {
   display: flex;
   flex-direction: column;
-  gap: 1em;
-  width: 90%;
-  max-width: 400px;
-  margin: 2em auto;
+  align-items: center;
+  margin-top: 20px;
+  gap: 10px;
   z-index: 1;
   position: relative;
 }
 
 input {
-  padding: 1em;
-  font-size: 1em;
+  padding: 12px 15px;
+  width: 300px;
   border-radius: 10px;
   border: none;
-  background: #ffffff;
-  color: #222;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  font-size: 1rem;
+  background-color: #fff;
+  color: #000;
 }
 
 button {
-  padding: 1em;
-  font-size: 1em;
-  border-radius: 10px;
+  padding: 12px 40px;
+  border-radius: 8px;
   border: none;
-  background: linear-gradient(to right, #00cfff, #00ffff);
-  color: white;
+  font-size: 1rem;
   font-weight: bold;
+  background: linear-gradient(to right, #00c6ff, #00f2fe);
+  color: white;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.3s;
-  text-transform: uppercase;
-}
-
-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 10px #00ffff;
+  box-shadow: 0 4px 15px rgba(0, 198, 255, 0.4);
 }
 
 table {
-  width: 90%;
-  max-width: 700px;
-  margin: 2em auto;
+  margin: 30px auto;
   border-collapse: collapse;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  width: 90%;
+  max-width: 800px;
+  z-index: 1;
+  position: relative;
 }
 
-thead {
-  background-color: rgba(0, 0, 0, 0.2);
-}
-
-th {
-  font-size: 1.1em;
+thead th {
+  background-color: rgba(255, 255, 255, 0.3);
   color: red;
-  padding: 1em;
-  text-align: center;
-  font-family: monospace;
+  font-size: 1.2rem;
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-td {
-  padding: 1em;
-  text-align: center;
-  font-family: monospace;
-  background-color: rgba(255, 255, 255, 0.07);
-  color: #fff;
-}
-
-/* Highlight top 3 players */
-tbody tr:nth-child(1) td {
-  color: gold;
-  font-weight: bold;
-}
-tbody tr:nth-child(2) td {
-  color: silver;
-  font-weight: bold;
-}
-tbody tr:nth-child(3) td {
-  color: #cd7f32; /* bronze */
-  font-weight: bold;
-}
-
-tbody tr:nth-child(even) td {
+tbody td {
   background-color: rgba(255, 255, 255, 0.1);
+  padding: 10px;
+  text-align: center;
+  font-size: 1rem;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-td a {
-  color: #00eaff;
-  text-decoration: none;
-}
-td a:hover {
-  text-decoration: underline;
-}
+tbody tr:nth-child(1) td { color: gold; font-weight: bold; }
+tbody tr:nth-child(2) td { color: silver; font-weight: bold; }
+tbody tr:nth-child(3) td { color: #cd7f32; font-weight: bold; }
