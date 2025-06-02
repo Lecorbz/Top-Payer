@@ -3,25 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <title>TOP PAYER</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="style.css" rel="stylesheet" />
 </head>
 <body>
-  <!-- Fond étoilé -->
-  <div class="stars" id="stars"></div>
-
   <h1>TOP PAYER</h1>
   <p class="subtitle">Pay to rank higher. On the last day of the month, top 1 gets refunded!</p>
   <p id="min-info">Minimum payment required: loading...</p>
-
   <form id="payment-form">
     <input type="text" id="name" placeholder="Your name" required />
     <input type="email" id="email" placeholder="Your email" required />
-    <input type="number" id="amount" placeholder="Amount in €" required />
+    <input type="number" id="amount" placeholder="Amount in €" min="1" step="1" required />
     <input type="url" id="link" placeholder="Website or social link (optional)" />
     <button type="submit">PAY</button>
   </form>
-
   <table>
     <thead>
       <tr><th>#</th><th>Player</th><th>€</th></tr>
@@ -36,6 +31,7 @@
       const res = await fetch(`${BACKEND_URL}/api/min`);
       const data = await res.json();
       document.getElementById("min-info").innerText = "Minimum payment required: " + data.min + "€";
+      document.getElementById("amount").setAttribute("min", data.min);
     }
 
     async function getRanking() {
@@ -44,13 +40,8 @@
       const body = document.getElementById("ranking-body");
       body.innerHTML = "";
       list.forEach((entry, i) => {
-        let style = '';
-        if (i === 0) style = 'style="color:gold"';
-        else if (i === 1) style = 'style="color:silver"';
-        else if (i === 2) style = 'style="color:#cd7f32"'; // bronze
-        else style = 'style="color:white"';
-
-        body.innerHTML += `<tr ${style}>
+        const medalClass = i === 0 ? 'gold' : i === 1 ? 'silver' : i === 2 ? 'bronze' : '';
+        body.innerHTML += `<tr class="${medalClass}">
           <td>${i + 1}</td>
           <td>${entry.link ? `<a href="${entry.link}" target="_blank">${entry.name}</a>` : entry.name}</td>
           <td>${entry.amount}</td>
@@ -60,10 +51,15 @@
 
     document.getElementById("payment-form").addEventListener("submit", async (e) => {
       e.preventDefault();
-      const name = document.getElementById("name").value;
-      const email = document.getElementById("email").value;
-      const amount = parseFloat(document.getElementById("amount").value);
-      const link = document.getElementById("link").value;
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const amount = parseInt(document.getElementById("amount").value);
+      const link = document.getElementById("link").value.trim();
+
+      if (isNaN(amount) || amount < parseInt(document.getElementById("amount").min)) {
+        alert("Amount must be at least " + document.getElementById("amount").min + "€");
+        return;
+      }
 
       const res = await fetch(`${BACKEND_URL}/api/checkout`, {
         method: "POST",
@@ -78,16 +74,6 @@
         alert(data.error || "Something went wrong.");
       }
     });
-
-    // Création des étoiles jaunes
-    const starsContainer = document.getElementById('stars');
-    for (let i = 0; i < 100; i++) {
-      const star = document.createElement('div');
-      star.className = 'star';
-      star.style.top = `${Math.random() * 100}%`;
-      star.style.left = `${Math.random() * 100}%`;
-      starsContainer.appendChild(star);
-    }
 
     getMinAmount();
     getRanking();
