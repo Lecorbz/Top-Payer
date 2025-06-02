@@ -3,7 +3,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Courier New', monospace;
-  background: linear-gradient(to bottom, #a06bdf, #97c6f3);
+  background: linear-gradient(to bottom, #9a6dc0, #8ec9f3);
   color: white;
   text-align: center;
   min-height: 100vh;
@@ -11,7 +11,7 @@ body {
   position: relative;
 }
 
-/* Étoiles random et scintillantes (grandes et visibles) */
+/* Étoiles scintillantes (taille modérée) */
 body::before {
   content: "";
   position: fixed;
@@ -20,10 +20,10 @@ body::before {
   width: 100%;
   height: 100%;
   background-image:
-    radial-gradient(yellow 8px, transparent 8px),
-    radial-gradient(yellow 8px, transparent 8px),
-    radial-gradient(yellow 8px, transparent 8px),
-    radial-gradient(yellow 8px, transparent 8px);
+    radial-gradient(yellow 4px, transparent 4px),
+    radial-gradient(yellow 4px, transparent 4px),
+    radial-gradient(yellow 4px, transparent 4px),
+    radial-gradient(yellow 4px, transparent 4px);
   background-size: 100px 100px, 120px 120px, 140px 140px, 160px 160px;
   background-position:
     10px 20px,
@@ -41,15 +41,15 @@ body::before {
   50% { opacity: 0.8; }
 }
 
-/* Titre avec effet néon léger */
+/* Titre effet néon adouci */
 h1 {
   font-size: 3em;
   color: #00f2ff;
-  text-shadow: 0 0 5px #00f2ff, 0 0 15px #00f2ff, 0 0 30px #00f2ff;
+  text-shadow: 0 0 5px #00f2ff, 0 0 15px #00f2ff, 0 0 20px #00f2ff;
   animation: flicker 2s infinite alternate;
   position: relative;
   z-index: 1;
-  opacity: 0.85;
+  opacity: 0.8;
 }
 
 @keyframes flicker {
@@ -57,7 +57,7 @@ h1 {
   100% { text-shadow: 0 0 10px #00f2ff, 0 0 20px #00f2ff; }
 }
 
-/* Texte informatif */
+/* Sous-titres */
 .subtitle,
 #min-info {
   font-size: 1em;
@@ -114,9 +114,10 @@ table {
 }
 
 thead {
-  background: rgba(200, 200, 200, 0.2);
+  background: rgba(255, 255, 255, 0.15);
   color: red;
-  font-size: 1.2em;
+  font-size: 1.4em;
+  font-weight: bold;
 }
 
 th, td {
@@ -124,7 +125,7 @@ th, td {
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-/* Médailles pour le top 3 */
+/* Médailles podium */
 tbody tr:nth-child(1) td {
   color: gold;
   font-weight: bold;
@@ -134,6 +135,6 @@ tbody tr:nth-child(2) td {
   font-weight: bold;
 }
 tbody tr:nth-child(3) td {
-  color: #cd7f32; /* Bronze */
+  color: #cd7f32;
   font-weight: bold;
 }
