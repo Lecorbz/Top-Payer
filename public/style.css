@@ -1,7 +1,10 @@
 body {
   margin: 0;
   font-family: 'Courier New', monospace;
-  background: linear-gradient(to bottom, #2c003e, #00172d);
+  background: linear-gradient(to bottom, #a259ff, #5ee7ff); /* dégradé clair violet à bleu */
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
   color: #ffffff;
   text-align: center;
   min-height: 100vh;
@@ -9,26 +12,27 @@ body {
   position: relative;
 }
 
-/* Sol rétro - grille */
+/* Grille synthwave */
 body::after {
   content: "";
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
   height: 200px;
-  background-image: linear-gradient(#6d28d9 1px, transparent 1px),
-                    linear-gradient(to right, #6d28d9 1px, transparent 1px);
+  background-image: linear-gradient(#ffffff30 1px, transparent 1px),
+                    linear-gradient(to right, #ffffff30 1px, transparent 1px);
   background-size: 40px 40px;
-  opacity: 0.2;
+  opacity: 0.25;
   pointer-events: none;
+  z-index: 0;
 }
 
-/* Titre néon */
+/* Titre effet néon */
 h1 {
   font-size: 3rem;
   color: #00ffff;
-  text-shadow: 0 0 10px #00ffff, 0 0 20px #00f0ff, 0 0 40px #00e0ff;
+  text-shadow: 0 0 5px #00ffff, 0 0 15px #00f0ff, 0 0 30px #00e0ff;
   margin-top: 40px;
 }
 
@@ -36,7 +40,7 @@ h1 {
 .subtitle, #min-info {
   font-size: 1rem;
   margin: 10px auto 20px;
-  color: #e0e0ff;
+  color: #fff6ff;
   font-weight: 500;
 }
 
@@ -47,17 +51,21 @@ form {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  z-index: 1;
+  position: relative;
 }
 
 input {
   padding: 12px;
   border: none;
   border-radius: 6px;
-  background: #240c37;
+  background: #300e4c;
   color: white;
   font-size: 1rem;
+  box-shadow: inset 0 0 5px #00000055;
 }
 
+/* Bouton */
 button {
   padding: 12px;
   background: linear-gradient(to right, #00bfff, #00ffff);
@@ -68,6 +76,7 @@ button {
   border-radius: 6px;
   cursor: pointer;
   transition: transform 0.2s ease;
+  box-shadow: 0 0 10px #00ffff99;
 }
 
 button:hover {
@@ -78,12 +87,14 @@ button:hover {
 table {
   width: 90%;
   max-width: 700px;
-  margin: 0 auto 50px;
+  margin: 0 auto 60px;
   border-collapse: collapse;
   background: rgba(0, 0, 0, 0.4);
   color: white;
   border-radius: 8px;
   overflow: hidden;
+  z-index: 1;
+  position: relative;
 }
 
 th, td {
@@ -92,7 +103,7 @@ th, td {
 }
 
 th {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.3);
   font-weight: bold;
 }
 
