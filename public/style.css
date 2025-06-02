@@ -5,25 +5,50 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Roboto Mono', monospace;
-  background: linear-gradient(to bottom, #1e1f26, #0f0f1b);
   color: white;
   text-align: center;
   min-height: 100vh;
+  overflow-x: hidden;
+  background: #1d002b;
+  background-image: url('https://i.ibb.co/tLw6Zbn/stars-bg.gif');
+  background-size: cover;
   background-attachment: fixed;
+  animation: starsScroll 60s linear infinite;
+}
+
+@keyframes starsScroll {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 0 1000px;
+  }
 }
 
 h1 {
   font-family: 'Orbitron', sans-serif;
-  font-size: 3em;
+  font-size: 3.5em;
   margin-top: 30px;
   color: #00f0ff;
-  text-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff;
+  text-shadow:
+    0 0 5px #00f0ff,
+    0 0 10px #00f0ff,
+    0 0 20px #00f0ff,
+    0 0 40px #00f0ff,
+    0 0 80px #00f0ff;
+  animation: crtFlicker 1.5s infinite;
+}
+
+@keyframes crtFlicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.92; }
+  80% { opacity: 0.98; }
 }
 
 .subtitle {
   font-size: 1.1em;
   margin-bottom: 10px;
-  color: #cccccc;
+  color: #eeeeee;
 }
 
 #min-info {
@@ -44,15 +69,15 @@ input {
   font-size: 1em;
   border: 1px solid #444;
   border-radius: 6px;
-  background-color: #1c1c2e;
+  background-color: #351f4a;
   color: white;
   outline: none;
   transition: 0.3s;
 }
 
 input:focus {
-  border-color: #00c3ff;
-  box-shadow: 0 0 10px #00c3ff;
+  border-color: #ff2bff;
+  box-shadow: 0 0 10px #ff2bff;
 }
 
 button {
@@ -95,7 +120,7 @@ th {
 }
 
 a {
-  color: #00e5ff;
+  color: #ff91f2;
   text-decoration: none;
 }
 
